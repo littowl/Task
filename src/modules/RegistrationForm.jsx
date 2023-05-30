@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/slices/userSlice';
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const RegistrationForm = () => {
     const dispatch = useDispatch()
@@ -31,7 +31,8 @@ const RegistrationForm = () => {
             <TextField sx={{marginBottom: "20px"}} required id="outlined-required" label="Введите пароль"
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <Button variant="outlined" onClick={handleClick}>Регистрация</Button>
+            <Button variant="outlined" onClick={handleClick} sx={{marginBottom: "20px"}}>Регистрация</Button>
+            <Link to='/auth'><Button>Перейти на страницу авторизации</Button></Link>
         </Box>
     )
 }

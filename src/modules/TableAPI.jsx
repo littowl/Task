@@ -8,19 +8,20 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Avatar from '@mui/material/Avatar';
 import Paper from '@mui/material/Paper';
-import { Typography, Box, Button } from '@mui/material';
+import { Typography, Box, Button, ButtonGroup } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const TableAPI = () => {
 
-    let page = 1
+    const [page, setPage] = useState(1)
     const url = `https://reqres.in/api/users?page=${page}`
 
     const [data, setData] = useState([])
-    const userAuth = useSelector(state => state.user.authentificated)
+    const isAuth = useSelector(state => state.user.authentificated)
 
     const getUsers = async () => {
+        setData([])
         await axios.get(url).then((res) => {
             res.data.data.map((item) => {
                 setData(state => {
@@ -31,11 +32,12 @@ const TableAPI = () => {
         })  
     }
 
-    useEffect(() => {getUsers()}, [])
+    useEffect(() => {getUsers()}, [page])
 
     return (
         <Box>
-            {userAuth ?
+            {isAuth ?
+            <Box>
                 <TableContainer>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
@@ -55,8 +57,13 @@ const TableAPI = () => {
                     </TableBody>
                         </Table>
                 </TableContainer>
+                <ButtonGroup sx={{marginTop: 2, display: 'flex', justifyContent: 'center'}}>
+                    <Button onClick={() => setPage(1)}>1</Button>
+                    <Button onClick={() => setPage(2)}>2</Button>
+                </ButtonGroup>
+            </Box>
                 : 
-                <Box>
+                <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', height: '100vh'}}>
                     <Typography>Для доступа к данной странице вы должны быть авторизованы.</Typography>
                     <Link to='/auth'><Button>Перейти на страницу авторизации</Button></Link>
                     

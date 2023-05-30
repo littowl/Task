@@ -21,7 +21,7 @@ const AuthorizationForm = () => {
             setError(true)
         } else {
             dispatch(setUser({
-                authentificated: true
+                authentificated: true   
             }))
             navigate('/table')
         }
