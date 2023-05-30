@@ -7,7 +7,7 @@ import Registration from './pages/Registration';
 import TablePage from './pages/TablePage';
 import CreateObject from './pages/CreateObject';
 
-
+// тут организовываем BrowserRouter и Routes для навигации, Provider для редакса
 function App() {
   return (
     <BrowserRouter>
@@ -19,9 +19,7 @@ function App() {
           <Route path='object' element = {<CreateObject />} />
         </Routes>
       </Provider>
-      
-        
-      </BrowserRouter>
+    </BrowserRouter>
   );
 }
 

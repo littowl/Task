@@ -8,11 +8,12 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
 const RegistrationForm = () => {
-    const dispatch = useDispatch()
-    const [login, setLogin] = useState("")
-    const [password, setPassword] = useState("")
-    const navigate = useNavigate()
+    const dispatch = useDispatch() // используем useDispatch для того, чтобы пользоваться редьюсером
+    const [login, setLogin] = useState("") // состояние логина
+    const [password, setPassword] = useState("") // состояние пароля
+    const navigate = useNavigate() // используем useNavigate для переадресации после успешной регистрации
 
+    // добавляем юзера в глобальное состояние с помощью dispatch и setUser, затем перенаправляем пользователя
     const handleClick = () => {
         dispatch(setUser({
             login: login,
