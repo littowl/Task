@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path='auth' element = {<Authorization />} />
           <Route path='table' element = {<TablePage />} />
-          <Route path='/' element = {<Registration />} />
+          <Route path='*' element = {<Registration />} />
           <Route path='object' element = {<CreateObject />} />
         </Routes>
       </Provider>
